@@ -5,10 +5,13 @@ import {RouteConfig, Router, RouterOutlet, RouterLink} from 'angular2/router';
 
 import {Dashboard} from './dashboard';
 import {Manage} from './manage';
+import {Trade} from './trade';
 
 @RouteConfig([
   {path: '/', as: 'dashboard', component: Dashboard},
-  {path: '/manage', as: 'manage', component: Manage}
+  {path: '/manage', as: 'manage', component: Manage},
+  {path: '/trade', as: 'trade', component: Trade}
+
 ])
 
 @Component({
@@ -25,6 +28,7 @@ import {Manage} from './manage';
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link" [router-link]="['/dashboard']">Dashboard</a>
           <a class="mdl-navigation__link" [router-link]="['/manage']">Manage</a>
+          <a class="mdl-navigation__link" [router-link]="['/trade']">Trade</a>
         </nav>
       </div>
     </header>

@@ -35,7 +35,7 @@ router.get('/api/snapshot', function(req, res) {
 
       setTimeout(function() {
         res.status(200).send(snapshot);
-      }, 5000);
+      }, 50);
     });
   } else {
     res.status(400).send({message: 'The request requires at least one symbol. Try adding "?symbols=appl" to the request.'});

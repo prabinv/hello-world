@@ -51,6 +51,7 @@ export class Trade {
     //symbols:Array<string>;
     tradestocks:Array<any>;
     //trades:Array<string>;
+
     service:StocksService;
     stockForm:any;
 
@@ -59,7 +60,8 @@ export class Trade {
         let symbols = service.get();
         this.tradestocks = [];
         symbols.forEach(item =>{
-            this.tradestocks.push({symbol:item, qty:0});
+
+            this.tradestocks.push({symbol:item, qty:0});;
         });
         //let builder = new FormBuilder();
         //this.stockForm = builder.group({

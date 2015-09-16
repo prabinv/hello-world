@@ -6,12 +6,13 @@ import {RouteConfig, Router, RouterOutlet, RouterLink} from 'angular2/router';
 import {Dashboard} from './dashboard';
 import {Manage} from './manage';
 import {Trade} from './trade';
+import {History} from './history';
 
 @RouteConfig([
   {path: '/', as: 'dashboard', component: Dashboard},
   {path: '/manage', as: 'manage', component: Manage},
-  {path: '/trade', as: 'trade', component: Trade}
-
+  {path: '/trade', as: 'trade', component: Trade},
+  {path: '/history/:stock', as: 'history', component: History}
 ])
 
 @Component({

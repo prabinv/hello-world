@@ -1,6 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts"/>
 import { Inject } from 'angular2/angular2';
-import { Http } from 'angular2/http'; 
+import { Http } from 'angular2/http';
 
 let stocks: Array<string> = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
 
@@ -37,5 +37,11 @@ export class StocksService {
         .toRx()
         .map(res => res.json())
     }
+  }
+
+  getHistory(symbol) {
+    return this.http.get('/api/historical/' + symbol)
+      .toRx()
+      .map(res => res.json())
   }
 }

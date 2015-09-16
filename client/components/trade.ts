@@ -17,16 +17,15 @@ import {StocksService} from '../services/stocks';
   <div class="demo-grid-1 mdl-grid">
     <div class="mdl-cell mdl-cell--4-col"></div>
     <div class="mdl-cell mdl-cell--4-col">
-      <!--<form [ng-form-model]="stockForm" style="margin-bottom: 5px;" (submit)="add()">-->
-        <!--<input ng-control="stock" class="mdl-textfield__input" type="text" placeholder="Add Stock" />-->
-      <!--</form>-->
+      <form [ng-form-model]="stockForm" style="margin-bottom: 5px;">
+        <input ng-control="stock" class="mdl-textfield__input" type="text" placeholder="Quantity" />
+      </form>
       <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
         <tbody>
-          <tr *ng-for="#ts of tradestocks">
-            <!--<td class="mdl-data-table__cell&#45;&#45;non-numeric">{{ts}}</td>-->
-            <td class="mdl-data-table__cell--non-numeric">..</td>
+          <tr *ng-for="#symbol of symbols">
+            <td class="mdl-data-table__cell--non-numeric">{{symbol}}</td>
             <td style="padding-top: 6px;">
-              <button class="mdl-button" (click)="trade(ts)">Trade</button>
+              <button class="mdl-button" (click)="trade(symbol)">Trade</button>
             </td>
           </tr>
         </tbody>
@@ -39,7 +38,7 @@ import {StocksService} from '../services/stocks';
     <div>
       <ul>
         <li *ng-for="#trade of tradestocks">
-          trade: {{trade}}
+          {{trade.symbol}} qty:{{trade.qty}}
         </li>
       </ul>
     </div>
@@ -48,7 +47,7 @@ import {StocksService} from '../services/stocks';
 `
 })
 export class Trade {
-    //symbols:Array<string>;
+    symbols:Array<string>;
     tradestocks:Array<any>;
     //trades:Array<string>;
 
@@ -57,20 +56,19 @@ export class Trade {
 
     constructor(service:StocksService) {
         this.service = service;
-        let symbols = service.get();
+        this.symbols = service.get();
         this.tradestocks = [];
-        symbols.forEach(item =>{
-
-            this.tradestocks.push({symbol:item, qty:0});;
-        });
-        //let builder = new FormBuilder();
-        //this.stockForm = builder.group({
-        //    stock: ['']
-        //})
+        //this.symbols.forEach(item =>{
+        //    this.tradestocks.push({symbol:item, qty:0});;
+        //});
+        let builder = new FormBuilder();
+        this.stockForm = builder.group({
+            stock: ['']
+        })
     }
 
-    trade(trade) {
-        this.tradestocks.push(trade);
+    trade(symbol) {
+        this.tradestocks.push({symbol:symbol, qty:this.stockForm.value.stock});
     }
 }
 
